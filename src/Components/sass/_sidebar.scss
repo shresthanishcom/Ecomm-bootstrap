@@ -1,0 +1,12 @@
+.home-sidebar {
+}
+
+.home-sidebar li {
+  height: 3rem;
+  list-style: none;
+
+  &:hover {
+    background-color: antiquewhite;
+    cursor: pointer;
+  }
+}

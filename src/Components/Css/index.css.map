@@ -1,8 +1,9 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "ACGA,AAAA,aAAa,CAAC,EAAE,CAAC;EACf,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,IAAI;CAMjB;;AARD,AAIE,aAJW,CAAC,EAAE,AAIb,MAAM,CAAC;EACN,gBAAgB,EAAE,YAAY;EAC9B,MAAM,EAAE,OAAO;CAChB",
     "sources": [
-        "../sass/index.scss"
+        "../sass/index.scss",
+        "../sass/_sidebar.scss"
     ],
     "names": [],
     "file": "index.css"

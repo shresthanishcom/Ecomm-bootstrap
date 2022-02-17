@@ -57,8 +57,8 @@ router.put("/edit", async (req, res) => {
         res.status(400).send("cannot be updated");
       });
   } catch (err) {
-    console.log("eror while updating check id type", err);
     res.status(400).send("eror while updating check id type");
+    console.log("   eror while updating check id type", err);
   }
 });
 

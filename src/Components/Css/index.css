@@ -1,1 +1,10 @@
-/* No CSS *//*# sourceMappingURL=index.css.map */
+.home-sidebar li {
+  height: 3rem;
+  list-style: none;
+}
+
+.home-sidebar li:hover {
+  background-color: antiquewhite;
+  cursor: pointer;
+}
+/*# sourceMappingURL=index.css.map */
