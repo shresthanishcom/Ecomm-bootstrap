@@ -1,10 +1,43 @@
+.home-sidebar {
+  padding: 0px 20px;
+  background-color: white;
+}
+
 .home-sidebar li {
+  padding: 20px;
   height: 3rem;
   list-style: none;
+  position: relative;
+  padding-top: 10px;
+}
+
+.home-sidebar li img {
+  margin-right: 10px;
+}
+
+.home-sidebar li::after {
+  content: " ";
+  width: 100%;
+  position: absolute;
+  border-bottom: 2px solid black;
+  bottom: 0px;
+  left: 0;
 }
 
 .home-sidebar li:hover {
   background-color: antiquewhite;
   cursor: pointer;
+}
+
+.specific-products {
+  background-color: white;
+}
+
+.product-page {
+  background-color: #f3f3f3;
+}
+
+.content {
+  margin-bottom: 2rem;
 }
 /*# sourceMappingURL=index.css.map */

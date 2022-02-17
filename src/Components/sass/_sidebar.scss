@@ -1,9 +1,26 @@
 .home-sidebar {
+  padding: 0px 20px;
+  background-color: white;
 }
 
 .home-sidebar li {
+  padding: 20px;
   height: 3rem;
   list-style: none;
+  position: relative;
+  padding-top: 10px;
+  img {
+    margin-right: 10px;
+  }
+
+  &::after {
+    content: " ";
+    width: 100%;
+    position: absolute;
+    border-bottom: 2px solid black;
+    bottom: 0px;
+    left: 0;
+  }
 
   &:hover {
     background-color: antiquewhite;
