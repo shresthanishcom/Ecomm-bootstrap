@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function AddNewProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios
+      .post("http://localhost:5000/product/addnew", state)
+      .then((res) => console.log(res))
+      .catch((err) => console.log("erro while posting new product", err));
   };
 
   const [state, setState] = useState({
@@ -10,6 +15,7 @@ function AddNewProduct() {
     price: "",
     description: "",
     type: "",
+    image: "",
   });
 
   const handleChange = (e) => {
@@ -26,12 +32,14 @@ function AddNewProduct() {
       case "type":
         setState((state) => ({ ...state, type: e.target.value }));
         break;
+      case "image":
+        setState((state) => ({ ...state, image: e.target.value }));
+        break;
       default:
     }
   };
   return (
     <div>
-      {console.log(state)}
       <form onSubmit={handleSubmit}>
         <h1>product add</h1>
         Name:
@@ -60,6 +68,13 @@ function AddNewProduct() {
           name="type"
           onChange={handleChange}
           value={state.type}
+          type="text"
+        />
+        image:
+        <input
+          name="image"
+          onChange={handleChange}
+          value={state.image}
           type="text"
         />
         <button className="btn btn-warning" type="submit">

@@ -3,6 +3,34 @@ const Mongoose = require("mongoose");
 const router = express.Router();
 const productModel = require("../Models/product_model");
 
+router.get("/hotdeals", async (req, res) => {
+  //getting random from database
+  try {
+    const user = await productModel.find();
+    return res.status(200).send(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.get("/newproducts", async (req, res) => {
+  //getting all from database and randomizing
+  try {
+    const user = await productModel.find();
+    let i = Math.floor(Math.random() * 5);
+    console.log(i);
+    const randomUser = user.filter((user, index) => {
+      if (i === index) {
+        i += 2;
+        return user;
+      }
+    });
+    return res.status(200).send(randomUser);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 router.get("/", async (req, res) => {
   try {
     const user = await productModel.find();
@@ -12,9 +40,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/new", async (req, res) => {
+router.post("/addnew", async (req, res) => {
   try {
-    const { name, price, description, type } = req.body;
+    const { name, price, description, type, image } = req.body;
 
     //instance of a model is document it is just a ///instance object and doesnot link with server until //you document.save() it
 
@@ -23,6 +51,7 @@ router.post("/new", async (req, res) => {
       price,
       description,
       type,
+      image,
     });
     userDocument.save();
     return res.status(200).json(userDocument);

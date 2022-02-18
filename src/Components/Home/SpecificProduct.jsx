@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Product from "./Product";
+import axios from "axios";
 
 function SpecificProduct(props) {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function getProducts() {
+      await axios
+        .get("http://localhost:5000/product/newproducts")
+        .then((res) => {
+          setProducts(res.data);
+        })
+        .catch((err) => console.log("error while getting products", err));
+    }
+    getProducts();
+  }, []);
+
+  const showProducts = () => {
+    return products.map((product) => {
+      return <Product key={product._id} product={product} />;
+    });
+  };
   return (
     <div>
       <div className="specific-products">
@@ -22,7 +42,7 @@ function SpecificProduct(props) {
             />
           </div>
         </div>
-        <Product />
+        <div className="row">{showProducts()}</div>
       </div>
     </div>
   );
