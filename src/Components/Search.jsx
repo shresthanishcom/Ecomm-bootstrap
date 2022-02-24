@@ -38,24 +38,35 @@ function Search() {
   };
   return (
     <>
-      <input
-        list="searchlists"
-        className="form-control "
-        type="search"
-        value={searchValue}
-        onChange={handleSearch}
-        placeholder="Search"
-        aria-label="Search"
-      />
-      {showLists()}
+      <div className="col-8 col-sm-8 col-md-8 search-bar ">
+        <input
+          list="searchlists"
+          className="form-control "
+          type="search"
+          value={searchValue}
+          onChange={handleSearch}
+          placeholder="Search"
+          aria-label="Search"
+        />
+        {showLists()}
+      </div>
+      <div className="col-4 col-sm-4 col-md-4 p-0">
+        <button
+          className="btn btn-outline-success btn-sm search-btn"
+          onClick={handleSubmit}
+          type="submit"
+        >
+          Search
+        </button>
 
-      <button
-        className="btn btn-outline-success "
-        onClick={handleSubmit}
-        type="submit"
-      >
-        Search
-      </button>
+        <button
+          className="btn text-white search-icon"
+          onClick={handleSubmit}
+          type="submit"
+        >
+          <i className="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
     </>
   );
 }

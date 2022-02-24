@@ -33,6 +33,38 @@
   cursor: pointer;
 }
 
+.navbar-brand img {
+  max-width: 100%;
+}
+
+.search-bar {
+  max-width: 10rem;
+}
+
+.search-btn {
+  max-width: 5em;
+}
+
+@media screen and (max-width: 768px) {
+  .search-btn {
+    display: none;
+  }
+}
+
+.search-icon {
+  border: 3px solid white;
+}
+
+@media screen and (min-width: 768px) {
+  .search-icon {
+    display: none;
+  }
+}
+
+.cart-image img {
+  width: 2em;
+}
+
 .product-page {
   background-color: #f3f3f3;
 }
