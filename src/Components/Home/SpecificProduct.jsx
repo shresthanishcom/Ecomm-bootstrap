@@ -5,42 +5,58 @@ import Product from "./Product";
 import axios from "axios";
 
 function SpecificProduct(props) {
-  const [products, setProducts] = useState([]);
-
   const numberOfItems = 4; //number of items to show
 
   const [state, setState] = useState({
+    products: [],
     trimmedProducts: [],
     initialIndex: 0,
     latestIndex: numberOfItems,
   });
 
+  const setProducts = (products) => {
+    setState({
+      ...state,
+      products,
+      trimmedProducts: products.slice(state.initialIndex, state.latestIndex),
+    });
+  };
   useEffect(() => {
     async function getProducts() {
       await axios
-        .get("http://localhost:5000/product/newproducts")
+        .get("http://localhost:5000/product/")
         .then((res) => {
           const products = res.data;
           console.log("from the server products", products);
           setProducts(products);
-          slicer();
         })
         .catch((err) => console.log("error while getting products", err));
     }
     getProducts();
   }, []);
 
-  const slicer = () => {
-    if (products.length > numberOfItems) {
-      setState({
-        ...state,
-        trimmedProducts: products.slice(state.initialIndex, state.latestIndex),
-        initialIndex: state.initialIndex + 4,
-        latestIndex: state.latestIndex + 4,
-      });
-    } else {
-      setState({ ...state, trimmedProducts: products });
-    }
+  const nextSlice = () => {
+    let { initialIndex, latestIndex } = state;
+    initialIndex += numberOfItems;
+    latestIndex += numberOfItems;
+    setState({
+      ...state,
+      initialIndex,
+      latestIndex,
+      trimmedProducts: state.products.slice(initialIndex, latestIndex),
+    });
+  };
+
+  const previousSlice = () => {
+    let { initialIndex, latestIndex } = state;
+    initialIndex -= numberOfItems;
+    latestIndex -= numberOfItems;
+    setState({
+      ...state,
+      initialIndex,
+      latestIndex,
+      trimmedProducts: state.products.slice(initialIndex, latestIndex),
+    });
   };
   const showProducts = () => {
     return state.trimmedProducts.map((product) => {
@@ -48,17 +64,25 @@ function SpecificProduct(props) {
     });
   };
 
-  const handleButton = (e) => {
-    console.log("clicked column", e.target.name);
-    switch (e.target.name) {
+  const handleClick = (e) => {
+    switch (e.currentTarget.name) {
       case "next":
-        console.log("nextclick");
-        slicer();
+        if (state.latestIndex < state.products.length) {
+          console.log("next clicked");
+          nextSlice();
+        }
         break;
       case "previous":
+        if (state.initialIndex > 0) {
+          console.log("next clicked");
+          previousSlice();
+        }
+
         break;
+      default:
     }
   };
+
   return (
     <div>
       <div className="specific-products">
@@ -67,15 +91,28 @@ function SpecificProduct(props) {
             <h1>{props.title}</h1>
           </div>
           <div className="col-6 ml-auto">
-            <FontAwesomeIcon
-              className="mr-2 btn btn-primary"
-              icon={faArrowLeft}
-            />
-            <FontAwesomeIcon
+            <button
+              name="previous"
+              className={
+                state.initialIndex > 0
+                  ? "btn btn-primary"
+                  : "btn btn-primary disabled"
+              }
+              onClick={handleClick}
+            >
+              <i className=" fas fa-arrow-left"></i>
+            </button>
+            <button
               name="next"
-              className="mr-2 btn btn-danger"
-              icon={faArrowRight}
-            />
+              className={
+                state.latestIndex < state.products.length
+                  ? "btn btn-danger"
+                  : "btn btn-danger disabled"
+              }
+              onClick={handleClick}
+            >
+              <i className="  fas fa-arrow-right "></i>
+            </button>
           </div>
         </div>
         <div className="row">{showProducts()}</div>

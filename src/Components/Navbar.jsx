@@ -8,10 +8,10 @@ export default function Navbar() {
 
   return (
     <div>
-      <div className="navbar navbar-expand-lg navbar-light bg-dark ">
-        <div className="container-fluid">
-          <div className="row w-100">
-            <div className="col-4 ">
+      <div className="navbar navbar-expand-sm navbar-light bg-dark ">
+        <div className="container">
+          <div className="row w-100 m-auto">
+            <div className="col-4">
               <Link to="/home">
                 <div className="navbar-brand">
                   <img src="./images/Logo.png" alt="company logo " />
@@ -19,8 +19,8 @@ export default function Navbar() {
               </Link>
             </div>
             <div className="col-8    ">
-              <div className="row ml-auto ">
-                <ul className="navbar-nav d-flex justify-content-around">
+              <div className="row ml-auto d-none d-lg-block">
+                <ul className="navbar-nav d-flex justify-content-around ">
                   <li className="nav-link text-light">My Account</li>
                   <li className="nav-link text-light">Whishlist</li>
                   <Link to="/addnew">
@@ -33,15 +33,15 @@ export default function Navbar() {
                 </ul>
               </div>
               <div className="row">
-                <div className="col-9 d-flex">
+                <div className="col-9 d-flex align-items-center">
                   <input
-                    class="form-control "
+                    className="form-control "
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
                   />
                   <button
-                    class="btn btn-outline-success "
+                    className="btn btn-outline-success "
                     onClick={handleSubmit}
                     type="submit"
                   >
@@ -49,21 +49,24 @@ export default function Navbar() {
                   </button>
                 </div>
                 <div className="col-3 text-light">
-                  <img src="./images/Cart1.png" alt="This is cart " />
-                  <span>
-                    Total
-                    <br />
-                    $1000
-                  </span>
+                  <div className="row">
+                    <div className="col-4">
+                      <img src="./images/Cart1.png" alt="This is cart " />
+                    </div>
+                    <div className="col-8 ">
+                      <div className="row-6">Total</div>
+                      <div className="row-6 ">$1000</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="row  w-100 bg-danger ">
+      <div className="row-1  bg-danger ">
         <div className="container">
-          <ul className="  d-flex flex-row justify-content-around  ">
+          <ul className="  d-flex p-1 m-0 flex justify-content-around  ">
             <li className="nav-link text-light">My Account</li>
             <li className="nav-link text-light">Whishlist</li>
             <li className="nav-link text-light">My Cart</li>
