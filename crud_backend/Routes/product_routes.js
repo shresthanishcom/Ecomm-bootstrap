@@ -12,6 +12,15 @@ router.get("/hotdeals", async (req, res) => {
     console.log(err);
   }
 });
+router.get("/lists", async (req, res) => {
+  try {
+    const lists = await productModel.find({}, { name: 1 });
+    res.status(200).json(lists);
+  } catch (err) {
+    res.status(400).send("error occured in fetching lists backend");
+    console.log("catched error", err);
+  }
+});
 
 router.get("/newproducts", async (req, res) => {
   //getting all from database and randomizing
