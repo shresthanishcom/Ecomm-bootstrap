@@ -27,12 +27,16 @@ function Carousel() {
         <div className="carousel-item">
           <img
             className="d-block w-100"
-            src="./images/gumba.jpg"
+            src="./images/ec.png"
             alt="Second slide"
           />
         </div>
         <div className="carousel-item">
-          <img className="d-block w-100" src="..." alt="Third slide" />
+          <img
+            className="d-block w-100"
+            src="./images/bag.png"
+            alt="Third slide"
+          />
         </div>
       </div>
       <a

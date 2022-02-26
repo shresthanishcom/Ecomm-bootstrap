@@ -3,11 +3,8 @@
     max-width: 100%;
   }
 }
-.search-bar {
-  max-width: 10rem;
-}
+
 .search-btn {
-  max-width: 5em;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -17,11 +14,24 @@
 
   @media screen and (min-width: 768px) {
     display: none;
+    align-items: center;
   }
 }
 
 .cart-image {
   img {
-    width: 2em;
+    min-width: 1.8em;
+  }
+}
+
+.sub-menu {
+  font-size: 14px;
+  line-height: 1em;
+  max-height: 3em;
+  li {
+    white-space: nowrap;
+  }
+  @media screen and (max-width: 416px) {
+    font-size: 12px;
   }
 }

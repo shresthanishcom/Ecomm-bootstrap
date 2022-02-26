@@ -38,7 +38,7 @@ function Search() {
   };
   return (
     <>
-      <div className="col-8 col-sm-8 col-md-8 search-bar ">
+      <div className="col-9 col-sm-9 col-md-9 col-lg-9 search-bar align-items-center">
         <input
           list="searchlists"
           className="form-control "
@@ -50,7 +50,7 @@ function Search() {
         />
         {showLists()}
       </div>
-      <div className="col-4 col-sm-4 col-md-4 p-0">
+      <div className="col-3 col-sm-3 col-md-3 col-lg-3 d-flex align-items-center pl-0">
         <button
           className="btn btn-outline-success btn-sm search-btn"
           onClick={handleSubmit}
