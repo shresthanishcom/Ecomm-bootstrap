@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Product from "./Product";
+import axios from "axios";
+
 function AllProducts(props) {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function getProducts() {
+      await axios
+        .get("http://localhost:5000/product/")
+        .then((res) => {
+          const products = res.data;
+          console.log("from the server products in all product", products);
+          setProducts(products);
+        })
+        .catch((err) => console.log("error while getting products", err));
+    }
+    getProducts();
+  }, []);
+
+  const showProducts = () => {
+    return products.map((product) => {
+      return <Product key={product._id} product={product} />;
+    });
+  };
   return (
-    <div className="card" style={{ width: "18rem" }}>
-      <img src="./images/gumba.jpg" className="card-img-top" alt="..." />
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">
-          Some quick example text to build on the card ti tle and make up the
-          bulk of the card's content.
-        </p>
-        <button className="btn btn-primary">Go somewhere</button>
-      </div>
+    <div className="container">
+      <h1>All products are</h1>
+      <div className="row w-100 ">{showProducts()}</div>
     </div>
   );
 }

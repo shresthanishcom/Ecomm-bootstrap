@@ -14,7 +14,9 @@ export default function Home() {
             <div className="content">
               <Carousel />
             </div>
-            <div className="content">{/* <AllProducts /> */}</div>
+            <div className="content">
+              <AllProducts />
+            </div>
             <div className="content">
               {/* <SpecificProduct title="New Products" /> */}
             </div>
