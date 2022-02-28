@@ -21,7 +21,7 @@ function AllProducts(props) {
 
   const showProducts = () => {
     return products.map((product) => {
-      return <Product key={product._id} product={product} />;
+      return <Product {...props} key={product._id} product={product} />;
     });
   };
   return (

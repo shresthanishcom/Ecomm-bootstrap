@@ -1,16 +1,14 @@
 import React from "react";
+import { useNavigate, useNavigationType } from "react-router-dom";
 
 function Product(props) {
   const { product } = props;
-
+  const navigate = useNavigate();
   const handleClick = (e, id) => {
-    const obj = { name: "anish", age: 21 };
-    console.log(obj);
+    navigate(`/product/${id}`);
   };
 
-  const addToCart = (e, id) => {
-    console.log("add to cart clicked", e.currentTarget.style.backgroundColor);
-  };
+  const addToCart = (e, id) => {};
   return (
     <div
       className="card"

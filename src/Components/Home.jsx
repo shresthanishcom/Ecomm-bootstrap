@@ -4,7 +4,7 @@ import AllProducts from "./Home/AllProducts";
 import Carousel from "./Home/Carousel";
 import SpecificProduct from "./Home/SpecificProduct";
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div className="row w-100 m-0 product-home">
       <div className="container">
@@ -15,7 +15,7 @@ export default function Home() {
               <Carousel />
             </div>
             <div className="content">
-              <AllProducts />
+              <AllProducts {...props} />
             </div>
             <div className="content">
               {/* <SpecificProduct title="New Products" /> */}
