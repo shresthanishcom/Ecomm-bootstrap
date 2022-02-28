@@ -1,14 +1,40 @@
 import React from "react";
-import { useNavigate, useNavigationType } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../redux/reducers/cartSlice";
 
 function Product(props) {
   const { product } = props;
   const navigate = useNavigate();
-  const handleClick = (e, id) => {
-    navigate(`/product/${id}`);
+  const carts = useSelector((state) => state.cartReducer.items);
+
+  const dispatch = useDispatch();
+
+  const checkInCart = () => {
+    let found = false;
+    carts.map((item) => {
+      if (item._id === product._id) {
+        found = true;
+      }
+    });
+    return found;
   };
 
-  const addToCart = (e, id) => {};
+  const handleClick = (e, id) => {
+    if (e.target.name !== "addtocart") {
+      navigate(`/product/${id}`);
+    }
+  };
+
+  const handleCartBtn = (e) => {
+    console.log(e.currentTarget.innerText);
+    const innerText = e.currentTarget.innerText;
+    if (innerText === "Add to cart") {
+      dispatch(addToCart(product));
+    } else {
+      dispatch(removeFromCart(product._id));
+    }
+  };
   return (
     <div
       className="card"
@@ -25,10 +51,11 @@ function Product(props) {
         <h5>{product.price}</h5>
         <p className="card-text">{product.description}</p>
         <button
-          className="btn btn-primary"
-          onClick={(e) => addToCart(e, product._id)}
+          name="addtocart"
+          className={checkInCart() ? "btn btn-danger" : "btn btn-primary"}
+          onClick={(e) => handleCartBtn(e, product)}
         >
-          Add to cart
+          {checkInCart() ? "Remove from cart" : "Add to cart"}
         </button>
       </div>
     </div>

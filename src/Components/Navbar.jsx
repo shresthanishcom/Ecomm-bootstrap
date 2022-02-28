@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Search from "./Search";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Navbar() {
+  const state = useSelector((state) => state.cartReducer);
+
+  setTimeout(() => {
+    console.log(state);
+  }, 10000);
+
   return (
     <div>
       <div className="navbar navbar-expand-sm navbar-light bg-dark  w-100">
@@ -39,6 +46,7 @@ export default function Navbar() {
                   <div className="col-5 cart-image">
                     <img src="./images/Cart1.png" alt="This is cart " />
                   </div>
+                  {state.items.length}
                   <div className="col-7 ">
                     <div className="row">Total</div>
                     <div className="row ">$1000</div>
