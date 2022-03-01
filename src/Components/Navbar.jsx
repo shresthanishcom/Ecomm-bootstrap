@@ -6,10 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 export default function Navbar() {
   const state = useSelector((state) => state.cartReducer);
 
-  setTimeout(() => {
-    console.log(state);
-  }, 10000);
-
   return (
     <div>
       <div className="navbar navbar-expand-sm navbar-light bg-dark  w-100">
@@ -44,7 +40,9 @@ export default function Navbar() {
               <div className="col-3 w-100 p-0 text-light d-none d-md-block">
                 <div className="row d-flex align-items-center">
                   <div className="col-5 cart-image">
-                    <img src="./images/Cart1.png" alt="This is cart " />
+                    <Link to="/cart">
+                      <img src="./images/Cart1.png" alt="This is cart " />
+                    </Link>
                   </div>
                   {state.items.length}
                   <div className="col-7 ">
