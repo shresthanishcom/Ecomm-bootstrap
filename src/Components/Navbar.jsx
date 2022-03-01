@@ -6,10 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 export default function Navbar() {
   const state = useSelector((state) => state.cartReducer);
 
-  setTimeout(() => {
-    console.log(state);
-  }, 10000);
-
   return (
     <div>
       <div className="navbar navbar-expand-sm navbar-light bg-dark  w-100">
