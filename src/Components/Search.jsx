@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
   const [searchValue, setSearchValue] = useState("");
   const [searchList, setSearchList] = useState([]);
+  const navigate = useNavigate();
 
   const getLists = async () => {
     await axios
@@ -19,8 +21,9 @@ function Search() {
     getLists();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, id) => {
     e.preventDefault();
+    navigate(`/search/${searchValue}`);
   };
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
@@ -53,7 +56,7 @@ function Search() {
       <div className="col-3 col-sm-3 col-md-3 col-lg-3 d-flex align-items-center pl-0">
         <button
           className="btn btn-outline-success btn-sm search-btn"
-          onClick={handleSubmit}
+          onClick={(e) => handleSubmit(e)}
           type="submit"
         >
           Search
@@ -61,7 +64,7 @@ function Search() {
 
         <button
           className="btn text-white search-icon"
-          onClick={handleSubmit}
+          onClick={(e) => handleSubmit(e)}
           type="submit"
         >
           <i className="fa-solid fa-magnifying-glass"></i>

@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar";
 import { Link, Route, Routes } from "react-router-dom";
 import AddNewProduct from "./Components/AddNewProduct";
 import ProductDetail from "./Components/ProductDetail";
+import SearchPage from "./Components/SearchPage";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/addnew" element={<AddNewProduct />} />
+        <Route path="/search/:id" element={<SearchPage />} />
+        <Route path="/search/" element={<Home />} />
       </Routes>
     </div>
   );
