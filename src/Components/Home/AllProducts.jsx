@@ -4,6 +4,7 @@ import axios from "axios";
 
 function AllProducts(props) {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getProducts() {

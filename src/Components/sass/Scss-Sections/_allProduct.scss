@@ -1,0 +1,15 @@
+.card {
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+.product-image {
+  img {
+    object-fit: contain;
+    height: 7rem;
+    width: 100%;
+  }
+}

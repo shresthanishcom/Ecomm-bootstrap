@@ -108,11 +108,34 @@
   }
 }
 
+.card img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.product-image img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 7rem;
+  width: 100%;
+}
+
 .product-home {
   background-color: #f3f3f3;
 }
 
 .content {
   margin-bottom: 2rem;
+}
+
+.product-image img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 7rem;
+  width: 100%;
 }
 /*# sourceMappingURL=index.css.map */

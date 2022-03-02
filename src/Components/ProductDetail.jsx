@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../redux/reducers/cartSlice";
+
+import "./Css/product.css";
 
 function ProductDetail() {
+  const dispatch = useDispatch();
+  const carts = useSelector((state) => state.cartReducer.items);
+
   const { id } = useParams();
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({ rating: {} });
   useEffect(() => {
     async function getProductDetail() {
       await axios
-        .get(`http://localhost:5000/product/${id}`)
+        .get(`https://fakestoreapi.com/products/${id}`)
         .then((res) => {
+          console.log(res.data);
           setProduct(res.data);
         })
         .catch((err) =>
@@ -18,26 +26,61 @@ function ProductDetail() {
     }
     getProductDetail();
   }, []);
+
+  const handleCartBtn = (e) => {
+    console.log(e.currentTarget.innerText);
+    const innerText = e.currentTarget.innerText;
+    if (innerText === "Add to cart") {
+      dispatch(addToCart(product));
+    } else {
+      dispatch(removeFromCart(product.id));
+    }
+  };
+  const checkInCart = () => {
+    let found = false;
+    carts.forEach((item) => {
+      if (item.id === product.id) {
+        found = true;
+      }
+    });
+    return found;
+  };
+
   return (
     <div>
       <div className="product-detail">
         <div className="container">
-          <div className="">
+          <div className="product-img">
             <img
-              src={`/images/${product.image}`}
+              src={`${product.image}`}
               alt="product image"
               className="mx-auto d-block"
             />
           </div>
           <div className="product-detail">
-            <div className=" display-2 ">{product.name}</div>
+            <div className=" display-2 ">{product.title}</div>
             <div title="Price in Nepal" className="h2 display-5">
               Rs.{product.price}
             </div>
-            <span>{product.type}</span>
+            <span>{product.category}</span>
+            <div>{product.rating.rate} star</div>
             <div className="lead border border-2">{product.description}</div>
           </div>
-          <button className="btn btn-primary m-3">Add to cart</button>
+          {!checkInCart() ? (
+            <button
+              className="btn btn-primary m-3"
+              onClick={() => dispatch(addToCart(product))}
+            >
+              Add to cart
+            </button>
+          ) : (
+            <button
+              className="btn btn-danger m-3"
+              onClick={() => dispatch(removeFromCart(product.id))}
+            >
+              Remove from cart
+            </button>
+          )}
         </div>
       </div>
     </div>

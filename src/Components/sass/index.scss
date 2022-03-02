@@ -1,6 +1,7 @@
 @import "./Scss-Sections/specificProduct";
 @import "./Scss-Sections/sidebar";
 @import "./Scss-Sections/navbar";
+@import "./Scss-Sections/_allProduct";
 
 .product-home {
   background-color: rgba($color: #f3f3f3, $alpha: 1);
@@ -8,4 +9,12 @@
 
 .content {
   margin-bottom: 2rem;
+}
+
+.product-image {
+  img {
+    object-fit: contain;
+    height: 7rem;
+    width: 100%;
+  }
 }
