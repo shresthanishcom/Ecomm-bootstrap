@@ -8,7 +8,7 @@ function AllProducts(props) {
   useEffect(() => {
     async function getProducts() {
       await axios
-        .get("http://localhost:5000/product/")
+        .get("https://fakestoreapi.com/products")
         .then((res) => {
           const products = res.data;
           console.log("from the server products in all product", products);
@@ -21,7 +21,7 @@ function AllProducts(props) {
 
   const showProducts = () => {
     return products.map((product) => {
-      return <Product {...props} key={product._id} product={product} />;
+      return <Product key={product.id} product={product} />;
     });
   };
   return (
