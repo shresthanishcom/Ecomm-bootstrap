@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Product from "./Product";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../../redux/reducers/cartSlice";
 
-function AllProducts(props) {
-  const [products, setProducts] = useState([]);
-
+function AllProducts() {
+  const dispatch = useDispatch();
   useEffect(() => {
-    async function getProducts() {
-      await axios
-        .get("https://fakestoreapi.com/products")
-        .then((res) => {
-          const products = res.data;
-          console.log("from the server products in all product", products);
-          setProducts(products);
-        })
-        .catch((err) => console.log("error while getting products", err));
+    function getProducts() {
+      dispatch(fetchProducts());
     }
     getProducts();
-  }, []);
-
+  });
+  const products = useSelector((state) => state.cartReducer.items);
   const showProducts = () => {
     return products.map((product) => {
       return <Product key={product.id} product={product} />;

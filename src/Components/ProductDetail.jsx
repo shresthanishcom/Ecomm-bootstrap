@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../redux/reducers/cartSlice";
+import {
+  addToCart,
+  removeFromCart,
+  fetchProductById,
+} from "../redux/reducers/cartSlice";
 
 import "./Css/product.css";
 
@@ -11,21 +15,11 @@ function ProductDetail() {
   const carts = useSelector((state) => state.cartReducer.items);
 
   const { id } = useParams();
-  const [product, setProduct] = useState({ rating: {} });
+  let product = { rating: {} };
   useEffect(() => {
-    async function getProductDetail() {
-      await axios
-        .get(`https://fakestoreapi.com/products/${id}`)
-        .then((res) => {
-          setProduct(res.data);
-        })
-        .catch((err) =>
-          console.log("error while fetching particular product", err)
-        );
-    }
-    getProductDetail();
-  }, [id]);
-
+    dispatch(fetchProductById(id));
+  });
+  product = useSelector((state) => state.cartReducer.visitedItems);
   const checkInCart = () => {
     let found = false;
     carts.forEach((item) => {

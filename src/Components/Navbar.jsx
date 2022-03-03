@@ -6,6 +6,11 @@ import { useSelector } from "react-redux";
 export default function Navbar() {
   const state = useSelector((state) => state.cartReducer);
 
+  const tryfn = () => (name) => {
+    return name;
+  };
+  console.log(tryfn);
+
   return (
     <div>
       <div className="navbar navbar-expand-sm navbar-light bg-dark  w-100">
