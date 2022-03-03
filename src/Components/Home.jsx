@@ -9,7 +9,9 @@ export default function Home(props) {
     <div className="row w-100 m-0 product-home">
       <div className="container">
         <div className="row ">
-          <div className="col-3">{/* <Sidebar /> */}</div>
+          <div className="col-3">
+            <Sidebar />
+          </div>
           <div className="col-9 main-content">
             <div className="content">
               <Carousel />
@@ -18,10 +20,10 @@ export default function Home(props) {
               <AllProducts />
             </div>
             <div className="content">
-              {/* <SpecificProduct title="New Products" /> */}
+              <SpecificProduct title="New Products" />
             </div>
             <div className="content">
-              {/* <SpecificProduct title="Hot deals" /> */}
+              <SpecificProduct title="Hot deals" />
             </div>
           </div>
         </div>

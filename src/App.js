@@ -2,7 +2,7 @@ import "./App.css";
 import Home from "./Components/Home";
 import "./Components/Css/index.css";
 import Navbar from "./Components/Navbar";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import AddNewProduct from "./Components/AddNewProduct";
 import ProductDetail from "./Components/ProductDetail";
 import Cart from "./Components/Cart";

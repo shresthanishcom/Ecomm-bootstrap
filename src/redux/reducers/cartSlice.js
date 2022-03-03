@@ -15,6 +15,7 @@ const cartSlice = createSlice({
           if (item.id !== action.payload) {
             return item;
           } else {
+            return null;
           }
         }),
       ];

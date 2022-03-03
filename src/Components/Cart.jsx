@@ -1,17 +1,15 @@
-import { prettyDOM } from "@testing-library/react";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 function Cart() {
   const carts = useSelector((state) => state.cartReducer.items);
-  const [state, setState] = useState();
   const getCartProducts = () => {
     return carts.map((product) => {
       return (
         <>
           <div className="row">
             <div className="col-3 product-image">
-              <img src={product.image} alt={`${product.title} image`} />
+              <img src={product.image} alt={`${product.title} `} />
             </div>
             <div className="col-9 product-title ">
               <div className="display-5">{product.title}</div>

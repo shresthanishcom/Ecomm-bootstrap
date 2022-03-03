@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
 import Product from "./Product";
 import axios from "axios";
 
@@ -33,7 +32,7 @@ function SpecificProduct(props) {
         .catch((err) => console.log("error while getting products", err));
     }
     getProducts();
-  }, []);
+  });
 
   const nextSlice = () => {
     let { initialIndex, latestIndex } = state;

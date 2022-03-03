@@ -17,7 +17,6 @@ function ProductDetail() {
       await axios
         .get(`https://fakestoreapi.com/products/${id}`)
         .then((res) => {
-          console.log(res.data);
           setProduct(res.data);
         })
         .catch((err) =>
@@ -25,17 +24,8 @@ function ProductDetail() {
         );
     }
     getProductDetail();
-  }, []);
+  }, [id]);
 
-  const handleCartBtn = (e) => {
-    console.log(e.currentTarget.innerText);
-    const innerText = e.currentTarget.innerText;
-    if (innerText === "Add to cart") {
-      dispatch(addToCart(product));
-    } else {
-      dispatch(removeFromCart(product.id));
-    }
-  };
   const checkInCart = () => {
     let found = false;
     carts.forEach((item) => {
@@ -53,7 +43,7 @@ function ProductDetail() {
           <div className="product-img">
             <img
               src={`${product.image}`}
-              alt="product image"
+              alt={product.title}
               className="mx-auto d-block"
             />
           </div>

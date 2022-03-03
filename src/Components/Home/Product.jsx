@@ -5,12 +5,6 @@ function Product(props) {
   const { product } = props;
   const navigate = useNavigate();
 
-  const handleClick = (e, id) => {
-    if (e.target.name !== "addtocart") {
-      navigate(`/product/${id}`);
-    }
-  };
-
   const handleBtn = (e, id) => {
     navigate(`/product/${id}`);
   };
@@ -23,7 +17,7 @@ function Product(props) {
       <img
         className="card-img-top"
         src={`${product.image}`}
-        alt="Card image cap"
+        alt={product.title}
       />
       <div className="card-body">
         <h5 className="card-title">{product.title}</h5>
