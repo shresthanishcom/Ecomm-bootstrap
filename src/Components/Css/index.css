@@ -131,11 +131,4 @@
 .content {
   margin-bottom: 2rem;
 }
-
-.product-image img {
-  -o-object-fit: contain;
-     object-fit: contain;
-  height: 7rem;
-  width: 100%;
-}
 /*# sourceMappingURL=index.css.map */

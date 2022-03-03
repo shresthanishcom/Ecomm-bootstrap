@@ -30,7 +30,9 @@ export default function Navbar() {
 
                     <li className="nav-link text-light">My Cart</li>
                     <li className="nav-link text-light">Checkout</li>
-                    <li className="nav-link text-light">Login</li>
+                    <Link to="/login">
+                      <li className="nav-link text-light">Login</li>
+                    </Link>
                   </ul>
                 </div>
                 <div className="row search-row">
