@@ -20,10 +20,10 @@ export default function Home(props) {
               <AllProducts />
             </div>
             <div className="content">
-              <SpecificProduct title="New Products" />
+              {/* <SpecificProduct title="New Products" /> */}
             </div>
             <div className="content">
-              <SpecificProduct title="Hot deals" />
+              {/* <SpecificProduct title="Hot deals" /> */}
             </div>
           </div>
         </div>

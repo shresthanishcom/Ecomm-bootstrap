@@ -7,6 +7,7 @@ import AddNewProduct from "./Components/AddNewProduct";
 import ProductDetail from "./Components/ProductDetail";
 import Cart from "./Components/Cart";
 import SearchPage from "./Components/SearchPage";
+import Login from "./Components/Authentication/Login";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/search/:id" element={<SearchPage />} />
         <Route path="/search/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
