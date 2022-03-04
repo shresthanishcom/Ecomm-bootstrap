@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -12,14 +11,30 @@ import "./Css/product.css";
 
 function ProductDetail() {
   const dispatch = useDispatch();
-  const carts = useSelector((state) => state.cartReducer.items);
-
+  const carts = useSelector((state) => state.cartReducer.cartItems);
+  let visitedProducts;
+  visitedProducts = useSelector((state) => state.cartReducer.visitedItems);
   const { id } = useParams();
-  let product = { rating: {} };
+  let product = {};
   useEffect(() => {
-    dispatch(fetchProductById(id));
+    let alreadyExists = false;
+    visitedProducts.map((item) => {
+      if (item.id === parseInt(id)) {
+        alreadyExists = true;
+      }
+    });
+    async function getProduct() {
+      await dispatch(fetchProductById(id));
+    }
+    if (!alreadyExists) {
+      getProduct();
+    }
+  }, []);
+  console.log("rndering");
+  visitedProducts.map((item) => {
+    if (item.id === parseInt(id)) product = item;
   });
-  product = useSelector((state) => state.cartReducer.visitedItems);
+
   const checkInCart = () => {
     let found = false;
     carts.forEach((item) => {
@@ -47,7 +62,7 @@ function ProductDetail() {
               Rs.{product.price}
             </div>
             <span>{product.category}</span>
-            <div>{product.rating.rate} star</div>
+            {/* <div>{!product.rating.rate ?? product.rating.rate} star</div> */}
             <div className="lead border border-2">{product.description}</div>
           </div>
           {!checkInCart() ? (

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = { items: [], visitedItems: [] };
+const initialState = { productItems: [], visitedItems: [], cartItems: [] };
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
@@ -13,7 +13,7 @@ export const fetchProducts = createAsyncThunk(
 export const fetchProductById = createAsyncThunk(
   "products/fetchProductById",
   async (productId) => {
-    const response = axios.get(
+    const response = await axios.get(
       `https://fakestoreapi.com/products/${productId}`
     );
     return response.data;
@@ -25,11 +25,11 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.items = [...state.items, action.payload];
+      state.cartItems = [...state.cartItems, action.payload];
     },
     removeFromCart: (state, action) => {
-      state.items = [
-        ...state.items.filter((item) => {
+      state.cartItems = [
+        ...state.cartItems.filter((item) => {
           if (item.id !== action.payload) {
             return item;
           } else {
@@ -42,7 +42,11 @@ const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       console.log("action payload", action.payload);
-      state.items.push(...action.payload);
+      state.productItems.push(...action.payload);
+    });
+    builder.addCase(fetchProductById.fulfilled, (state, action) => {
+      console.log("action payload product id", action.payload);
+      state.visitedItems.push(action.payload);
     });
   },
 });

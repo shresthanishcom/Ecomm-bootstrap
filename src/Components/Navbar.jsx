@@ -4,12 +4,7 @@ import Search from "./Search";
 import { useSelector } from "react-redux";
 
 export default function Navbar() {
-  const state = useSelector((state) => state.cartReducer);
-
-  const tryfn = () => (name) => {
-    return name;
-  };
-  console.log(tryfn);
+  const cartItems = useSelector((state) => state.cartReducer.cartItems);
 
   return (
     <div>
@@ -49,7 +44,7 @@ export default function Navbar() {
                       <img src="./images/Cart1.png" alt="This is cart " />
                     </Link>
                   </div>
-                  {state.items.length}
+                  {cartItems.length}
                   <div className="col-7 ">
                     <div className="row">Total</div>
                     <div className="row ">$1000</div>
