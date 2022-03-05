@@ -7,6 +7,7 @@ import { fetchProducts } from "../../redux/reducers/cartSlice";
 function AllProducts() {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
+
   const [loading, setLoading] = useState("true");
   useEffect(() => {
     async function getProducts() {
@@ -18,6 +19,7 @@ function AllProducts() {
     getProducts();
     // dispatch(fetchProducts());
   }, []);
+
   // const products = useSelector((state) => state.cartReducer.productItems);
   const showProducts = () => {
     return products.map((product) => {
