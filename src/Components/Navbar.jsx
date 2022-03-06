@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const cartItems = useSelector((state) => state.cartReducer.cartItems);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const calculateTotalPrice = () => {
+    let price = 0;
+    cartItems.map((item) => {
+      price += item.price;
+    });
+    setTotalPrice(price);
+  };
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [cartItems]);
 
   return (
     <div>
@@ -49,7 +60,7 @@ export default function Navbar() {
                   {cartItems.length}
                   <div className="col-7 ">
                     <div className="row">Total</div>
-                    <div className="row ">$1000</div>
+                    <div className="row ">{totalPrice}</div>
                   </div>
                 </div>
               </div>
