@@ -3,22 +3,23 @@ import axios from "axios";
 
 const initialState = { productItems: [], visitedItems: [], cartItems: [] };
 
-export const fetchProducts = createAsyncThunk(
-  "products/fetchProducts",
-  async () => {
-    const response = await axios.get("https://fakestoreapi.com/products");
-    return response.data;
-  }
-);
-export const fetchProductById = createAsyncThunk(
-  "products/fetchProductById",
-  async (productId) => {
-    const response = await axios.get(
-      `https://fakestoreapi.com/products/${productId}`
-    );
-    return response.data;
-  }
-);
+//for thunk async call for server
+// export const fetchProducts = createAsyncThunk(
+//   "products/fetchProducts",
+//   async () => {
+//     const response = await axios.get("https://fakestoreapi.com/products");
+//     return response.data;
+//   }
+// );
+// export const fetchProductById = createAsyncThunk(
+//   "products/fetchProductById",
+//   async (productId) => {
+//     const response = await axios.get(
+//       `https://fakestoreapi.com/products/${productId}`
+//     );
+//     return response.data;
+//   }
+// );
 
 const cartSlice = createSlice({
   name: "cartReducer",
@@ -38,18 +39,24 @@ const cartSlice = createSlice({
         }),
       ];
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
-      console.log("action payload", action.payload);
-      state.productItems.push(...action.payload);
-    });
-    builder.addCase(fetchProductById.fulfilled, (state, action) => {
-      console.log("action payload product id", action.payload);
+    addToVisitedItems: (state, action) => {
       state.visitedItems.push(action.payload);
-    });
+    },
   },
+
+  ///for async thunk
+  // extraReducers: (builder) => {
+  //   builder.addCase(fetchProducts.fulfilled, (state, action) => {
+  //     console.log("action payload", action.payload);
+  //     state.productItems.push(...action.payload);
+  //   });
+  //   builder.addCase(fetchProductById.fulfilled, (state, action) => {
+  //     console.log("action payload product id", action.payload);
+  //     state.visitedItems.push(action.payload);
+  //   });
+  // },
 });
 
 export default cartSlice.reducer;
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, addToVisitedItems } =
+  cartSlice.actions;

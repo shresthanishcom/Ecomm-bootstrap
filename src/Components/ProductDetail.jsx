@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
   removeFromCart,
-  fetchProductById,
+  addToVisitedItems,
 } from "../redux/reducers/cartSlice";
 
 import "./Css/product.css";
@@ -12,15 +12,21 @@ import "./Css/product.css";
 function ProductDetail() {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.cartReducer.cartItems);
+  let product = {};
 
   const [loading, setLoading] = useState(true);
+  const [iteration, setIteration] = useState(1);
+  const [state, setState] = useState({ quantity: 1, costPrice: product.price });
 
   let visitedProducts;
   visitedProducts = useSelector((state) => state.cartReducer.visitedItems);
   const { id } = useParams();
-  let product = {};
+  visitedProducts.map((item) => {
+    if (item.id === parseInt(id)) product = item;
+  });
   useEffect(() => {
     let alreadyExists = false;
+
     visitedProducts.map((item) => {
       if (item.id === parseInt(id)) {
         alreadyExists = true;
@@ -29,24 +35,16 @@ function ProductDetail() {
     });
 
     async function getProduct() {
-      await dispatch(fetchProductById(id)).then(() => {
-        console.log("setting state");
-        setState({ ...state, costPrice: product.price });
-      });
+      const data = await fetch(`https://fakestoreapi.com/products/${id}`);
+      const result = await data.json();
+      console.log(result);
+
       setLoading(false);
     }
     if (!alreadyExists) {
       getProduct();
     }
   }, []);
-
-  useEffect(() => {
-    console.log(" in product eeffect");
-  }, []);
-
-  visitedProducts.map((item) => {
-    if (item.id === parseInt(id)) product = item;
-  });
 
   const checkInCart = () => {
     let found = false;
@@ -58,8 +56,6 @@ function ProductDetail() {
 
     return found;
   };
-
-  const [state, setState] = useState({ quantity: 1, costPrice: product.price });
 
   const handleQuantity = (e) => {
     let price = product.price * e.target.value;

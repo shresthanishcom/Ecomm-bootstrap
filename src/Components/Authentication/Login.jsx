@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Css/index.css";
 
 function Login() {
+  const [state, setState] = useState({ email: "", password: "" });
+  const handleChange = (e) => {
+    switch (e.target.name) {
+      case "email": {
+        setState({ ...state, email: e.target.value });
+        break;
+      }
+      case "password": {
+        setState({
+          ...state,
+          password: e.target.value,
+        });
+        break;
+      }
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted");
   };
   return (
     <div className="container">
@@ -12,9 +27,19 @@ function Login() {
         <div className="row ">
           <div className=" ">
             Email:
-            <input type="text" />
+            <input
+              name="email"
+              type="text"
+              value={state.email}
+              onChange={handleChange}
+            />
             Password:
-            <input type="password" />
+            <input
+              name="password"
+              type="password"
+              value={state.password}
+              onChange={handleChange}
+            />
             <button className="btn btn-primary">Login</button>
           </div>
         </div>
