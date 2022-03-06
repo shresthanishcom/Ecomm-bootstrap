@@ -9,7 +9,7 @@ export default function Navbar() {
   const calculateTotalPrice = () => {
     let price = 0;
     cartItems.map((item) => {
-      price += item.price;
+      price += item.price * item.quantity;
     });
     setTotalPrice(price);
   };

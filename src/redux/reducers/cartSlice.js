@@ -38,6 +38,25 @@ const cartSlice = createSlice({
         }),
       ];
     },
+
+    editCartItems: (state, action) => {
+      console.log("in edit cart items,", action.payload);
+      state.cartItems = [
+        ...state.cartItems.map((item) => {
+          if (item.id === action.payload.id) {
+            console.log("item matched");
+            switch (action.payload.objectName) {
+              case "quantity":
+                console.log("quantity in slice");
+                return { ...item, quantity: action.payload.value };
+
+              default:
+                return item;
+            }
+          } else return item;
+        }),
+      ];
+    },
     addToVisitedItems: (state, action) => {
       state.visitedItems.push(action.payload);
     },
@@ -57,5 +76,5 @@ const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
-export const { addToCart, removeFromCart, addToVisitedItems } =
+export const { addToCart, removeFromCart, addToVisitedItems, editCartItems } =
   cartSlice.actions;

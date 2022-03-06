@@ -91,24 +91,31 @@ function ProductDetail() {
               </div>
               <span>{product.category}</span>
               <div>{product.rating?.rate && product.rating.rate} star</div>
-              <div>
-                Quantity:
-                <select value={state.quantity} onChange={handleQuantity}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-              </div>
-              <div className="lead border border-2">{product.description}</div>
             </div>
             {!checkInCart() ? (
               <>
+                <div>
+                  Quantity:
+                  <select value={state.quantity} onChange={handleQuantity}>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+                <div className="lead border border-2">
+                  {product.description}
+                </div>
                 <button
                   className="btn btn-primary m-3"
                   onClick={() =>
-                    dispatch(addToCart({ ...product, price: state.costPrice }))
+                    dispatch(
+                      addToCart({
+                        ...product,
+                        quantity: state.quantity,
+                      })
+                    )
                   }
                 >
                   Add to cart
@@ -117,12 +124,18 @@ function ProductDetail() {
                 {` Rs.${state.costPrice}`}
               </>
             ) : (
-              <button
-                className="btn btn-danger m-3"
-                onClick={() => dispatch(removeFromCart(product.id))}
-              >
-                Remove from cart
-              </button>
+              <>
+                <div className="lead border border-2">
+                  {product.description}
+                </div>
+
+                <button
+                  className="btn btn-danger m-3"
+                  onClick={() => dispatch(removeFromCart(product.id))}
+                >
+                  Remove from cart
+                </button>
+              </>
             )}
           </div>
         </div>
