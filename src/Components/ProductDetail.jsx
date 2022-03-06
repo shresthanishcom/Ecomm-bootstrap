@@ -12,33 +12,38 @@ import "./Css/product.css";
 function ProductDetail() {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.cartReducer.cartItems);
-  let product = {};
 
+  const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
-  const [iteration, setIteration] = useState(1);
   const [state, setState] = useState({ quantity: 1, costPrice: product.price });
 
   let visitedProducts;
   visitedProducts = useSelector((state) => state.cartReducer.visitedItems);
   const { id } = useParams();
-  visitedProducts.map((item) => {
-    if (item.id === parseInt(id)) product = item;
-  });
+
   useEffect(() => {
     let alreadyExists = false;
 
     visitedProducts.map((item) => {
       if (item.id === parseInt(id)) {
+        setProduct(item);
+        setState({ ...state, costPrice: item.price });
         alreadyExists = true;
         setLoading(false);
       }
     });
 
     async function getProduct() {
-      const data = await fetch(`https://fakestoreapi.com/products/${id}`);
-      const result = await data.json();
-      console.log(result);
+      let data = await fetch(`https://fakestoreapi.com/products/${id}`)
+        .then((response) => response.json())
+        .catch((err) => {
+          console.log("error while fetching data", err);
+          return {};
+        });
 
+      setProduct(data);
+      dispatch(addToVisitedItems(data));
+      setState({ ...state, costPrice: data.price });
       setLoading(false);
     }
     if (!alreadyExists) {
