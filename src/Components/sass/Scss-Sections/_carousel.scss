@@ -1,3 +1,12 @@
-.carousel {
-  background-color: red;
+.manual-carousel-item {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.carousel-button {
+  height: 1rem;
+  width: 1rem;
 }
