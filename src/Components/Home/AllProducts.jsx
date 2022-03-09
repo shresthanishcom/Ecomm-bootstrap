@@ -30,7 +30,7 @@ function AllProducts() {
     <>
       <h1>All products:</h1>
       {loading && (
-        <div class="lds-circle">
+        <div className="lds-circle">
           <div></div>
         </div>
       )}

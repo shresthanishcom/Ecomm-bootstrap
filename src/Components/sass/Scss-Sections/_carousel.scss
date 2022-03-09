@@ -10,3 +10,12 @@
   height: 1rem;
   width: 1rem;
 }
+.carousel-button {
+  ol {
+    li {
+      display: inline;
+      margin: 0 1rem;
+      border: 0.5rem solid red;
+    }
+  }
+}

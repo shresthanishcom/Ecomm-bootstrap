@@ -3,28 +3,44 @@ import "../sass/Scss-Sections/_carousel.scss";
 
 function Carousel() {
   const [state, setState] = useState({ currentSlide: 0 });
-  let allItems = document.querySelectorAll("manual-carousel-item");
-
   useEffect(() => {
+    console.log("use Effect running");
+    const allItems = document.querySelectorAll(".manual-carousel-item");
+    console.log("allitems", allItems);
     const automaticButton = document.getElementById("automatic-button");
     for (let i = 0; i < allItems.length; i++) {
       let newList = document.createElement("li");
-      newList.appendChild(document.createTextNode(i));
       newList.id = i;
       newList.addEventListener("click", handleCarouselBtnClick);
+      newList.appendChild(document.createTextNode(""));
       automaticButton.appendChild(newList);
     }
   }, []);
-
   const handleCarouselBtnClick = (e) => {
+    const allItems = document.querySelectorAll(".manual-carousel-item");
     const id = e.target.id;
-    allItems.map((item, index) => {
-      item.classList.remove("active");
-    });
+    for (let i = 0; i < allItems.length; i++) {
+      allItems[i].classList.remove("active");
+    }
+
     allItems[id].classList.add("active");
   };
+  const handleClick = (e) => {
+    if (e.target.name === "left") {
+      setState({ ...state, currentSlide: state.currentSlide - 1 });
+    } else if (e.target.name === "right") {
+      setState({ ...state, currentSlide: state.currentSlide + 1 });
+    }
+  };
+
   return (
     <div className="carousel-container">
+      <div name="left" className="left" onClick={handleClick}>
+        {"<--"}
+      </div>
+      <div name="right" className="right" onClick={handleClick}>
+        {"-->"}
+      </div>
       <div className="manual-carousel-item active">
         <img src="./images/girl.png" alt="third slide" />
       </div>
