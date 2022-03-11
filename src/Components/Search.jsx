@@ -41,10 +41,10 @@ function Search() {
   };
   return (
     <>
-      <div className="col-9 col-sm-9 col-md-9 col-lg-9 search-bar align-items-center">
+      <div className="col-10 col-sm-9 col-md-9 col-lg-10 search-bar ">
         <input
           list="searchlists"
-          className="form-control "
+          className="form-control h-100 "
           type="search"
           value={searchValue}
           onChange={handleSearch}
@@ -53,9 +53,9 @@ function Search() {
         />
         {showLists()}
       </div>
-      <div className="col-3 col-sm-3 col-md-3 col-lg-3 d-flex align-items-center pl-0">
+      <div className="col-2 col-sm-3 col-md-3 col-lg-2 d-flex  ">
         <button
-          className="btn btn-outline-success btn-sm search-btn"
+          className="btn btn-success search-btn "
           onClick={(e) => handleSubmit(e)}
           type="submit"
         >
@@ -63,7 +63,7 @@ function Search() {
         </button>
 
         <button
-          className="btn text-white search-icon"
+          className="btn text-white search-icon "
           onClick={(e) => handleSubmit(e)}
           type="submit"
         >

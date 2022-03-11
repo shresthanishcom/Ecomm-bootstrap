@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AACE,YADU,CACV,GAAG,CAAC;EACF,MAAM,EAAE,KAAK;CACd",
-    "sources": [
-        "../sass/product.scss"
-    ],
-    "names": [],
-    "file": "product.css"
-}
+{"version":3,"sources":["../sass/product.scss","product.css"],"names":[],"mappings":"AACE;EACE,aAAA;ACAJ","file":"product.css"}

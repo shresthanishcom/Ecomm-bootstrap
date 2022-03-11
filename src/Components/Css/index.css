@@ -9,35 +9,28 @@
 
 .home-sidebar li {
   position: relative;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   list-style: none;
   height: 2.2em;
 }
-
 .home-sidebar li img {
   margin: 0 1em;
 }
-
 @media screen and (max-width: 280px) {
   .home-sidebar li {
     font-size: 0.5em;
   }
 }
-
 @media screen and (max-width: 540px) {
   .home-sidebar li {
     font-size: 0.5em;
   }
 }
-
 @media screen and (max-width: 768px) {
   .home-sidebar li {
     font-size: 0.7em;
   }
 }
-
 .home-sidebar li::after {
   position: absolute;
   content: " ";
@@ -46,66 +39,20 @@
   bottom: 0;
   left: 1.5em;
 }
-
 @media screen and (max-width: 540px) {
   .home-sidebar li::after {
     bottom: 0px;
     width: 60%;
   }
 }
-
 @media screen and (max-width: 768px) {
   .home-sidebar li::after {
     bottom: 0px;
   }
 }
-
 .home-sidebar li:hover {
   background-color: antiquewhite;
   cursor: pointer;
-}
-
-.navbar-brand img {
-  max-width: 100%;
-}
-
-@media screen and (max-width: 768px) {
-  .search-btn {
-    display: none;
-  }
-}
-
-.search-icon {
-  border: 3px solid white;
-}
-
-@media screen and (min-width: 768px) {
-  .search-icon {
-    display: none;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-}
-
-.cart-image img {
-  min-width: 1.8em;
-}
-
-.sub-menu {
-  font-size: 14px;
-  line-height: 1em;
-  max-height: 3em;
-}
-
-.sub-menu li {
-  white-space: nowrap;
-}
-
-@media screen and (max-width: 416px) {
-  .sub-menu {
-    font-size: 12px;
-  }
 }
 
 .card img {
@@ -128,17 +75,10 @@
   height: 5rem;
   width: 100%;
   display: inline-block;
-  -webkit-transform: translateZ(1px);
-          transform: translateZ(1px);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  transform: translateZ(1px);
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .lds-circle > div {
@@ -153,54 +93,75 @@
 }
 
 @-webkit-keyframes lds-circle {
-  0%,
-  100% {
+  0%, 100% {
     -webkit-animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
             animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
   }
   0% {
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
+    transform: rotateY(0deg);
   }
   50% {
-    -webkit-transform: rotateY(1800deg);
-            transform: rotateY(1800deg);
+    transform: rotateY(1800deg);
     -webkit-animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
             animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
   }
   100% {
-    -webkit-transform: rotateY(3600deg);
-            transform: rotateY(3600deg);
+    transform: rotateY(3600deg);
   }
 }
 
 @keyframes lds-circle {
-  0%,
-  100% {
+  0%, 100% {
     -webkit-animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
             animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
   }
   0% {
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
+    transform: rotateY(0deg);
   }
   50% {
-    -webkit-transform: rotateY(1800deg);
-            transform: rotateY(1800deg);
+    transform: rotateY(1800deg);
     -webkit-animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
             animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
   }
   100% {
-    -webkit-transform: rotateY(3600deg);
-            transform: rotateY(3600deg);
+    transform: rotateY(3600deg);
   }
 }
-
-.product-home {
-  background-color: #f3f3f3;
+.navbar .navbar-brand {
+  width: 10rem;
+}
+.navbar .navbar-brand img {
+  width: 100%;
 }
 
-.content {
-  margin-bottom: 2rem;
+.nav-content {
+  width: 100%;
 }
-/*# sourceMappingURL=index.css.map */
+
+.search-container {
+  height: 3rem;
+}
+
+.search-box {
+  padding: 0 1rem;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.search-button {
+  border-radius: 0.5rem;
+}
+
+.cart-number {
+  position: absolute;
+  top: -11px;
+  right: 23px;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}/*# sourceMappingURL=index.css.map */

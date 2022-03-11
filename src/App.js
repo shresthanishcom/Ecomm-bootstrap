@@ -8,11 +8,12 @@ import ProductDetail from "./Components/ProductDetail";
 import Cart from "./Components/Cart";
 import SearchPage from "./Components/SearchPage";
 import Login from "./Components/Authentication/Login";
+import Navbarr from "./Components/Navbarr";
 
 function App() {
   return (
     <div>
-      <Navbar />
+      <Navbarr />
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetail />} />

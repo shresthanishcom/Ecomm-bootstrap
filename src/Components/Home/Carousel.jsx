@@ -4,8 +4,10 @@ import "../sass/Scss-Sections/_carousel.scss";
 function Carousel() {
   const [state, setState] = useState({ currentSlide: 0, allItems: [] });
   useEffect(() => {
+    //the more manaual crousel item added it automatically generate buttons
+    //this run after dom is rendered useffect runs after dom
+
     const allItems = document.querySelectorAll(".manual-carousel-item");
-    console.log("all items in useEffect", allItems);
     setState({ ...state, allItems: allItems });
     const automaticButton = document.getElementById("automatic-button");
     for (let i = 0; i < allItems.length; i++) {
@@ -17,43 +19,54 @@ function Carousel() {
     }
   }, []);
 
+  const getItems = () => {
+    return document.querySelectorAll(".manual-carousel-item");
+  };
+
+  //for changing the carousel image
   const changeCarouselImage = (id) => {
-    const allItems = state.allItems;
-    console.log("alll items are ", allItems);
+    const allItems = getItems();
     for (let i = 0; i < allItems.length; i++) {
       allItems[i].classList.remove("active");
     }
 
     allItems[id].classList.add("active");
   };
+
+  //
   const handleCarouselBtnClick = (e) => {
     changeCarouselImage(e.target.id);
+    setState({ ...state, currentSlide: e.target.id });
   };
-  const handleClick = (e) => {
+
+  const handleSwipeClick = (e) => {
     let currentSlide = state.currentSlide;
-    if (e.target.name === "left") {
-      // if (currentSlide <= 0) {
-      //   currentSlide = state.allItems.length;
-      // }
-      currentSlide -= 1;
+    const allItems = getItems();
+    if (e.target.id === "left") {
+      if (currentSlide <= 0) {
+        currentSlide = allItems.length - 1;
+      } else {
+        currentSlide -= 1;
+      }
       changeCarouselImage(currentSlide);
       setState({ ...state, currentSlide });
-    } else if (e.target.name === "right") {
-      // if (currentSlide >= state.allItems.length) {
-      //   currentSlide = state.allItems.length;
-      // }
+    } else if (e.target.id === "right") {
+      if (currentSlide >= allItems.length - 1) {
+        currentSlide = 0;
+      } else {
+        currentSlide = parseInt(currentSlide) + 1;
+      }
       changeCarouselImage(currentSlide);
-      setState({ ...state, currentSlide: state.currentSlide + 1 });
+      setState({ ...state, currentSlide });
     }
   };
 
   return (
     <div className="carousel-container">
-      {console.log(state)}
-      <div name="left" className="left" onClick={handleClick}>
+      <div id="left" className="left" onClick={(e) => handleSwipeClick(e)}>
         {"<--"}
       </div>
-      <div name="right" className="right" onClick={handleClick}>
+      <div id="right" className="right" onClick={(e) => handleSwipeClick(e)}>
         {"-->"}
       </div>
       <div className="manual-carousel-item active">

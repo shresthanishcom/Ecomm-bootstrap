@@ -1,13 +1,14 @@
-@import "./Scss-Sections/specificProduct";
-@import "./Scss-Sections/sidebar";
-@import "./Scss-Sections/navbar";
-@import "./Scss-Sections/_allProduct";
-@import "./Scss-Sections/_login";
-@import "./Scss-animations/_loading";
-.product-home {
-  background-color: rgba($color: #f3f3f3, $alpha: 1);
-}
+@use "./Scss-Sections/specificProduct";
+@use "./Scss-Sections/sidebar";
+@use "./Scss-Sections/_allProduct";
+@use "./Scss-Sections/_login";
+@use "./Scss-animations/_loading";
+@use "./Scss-Sections/newNavbar";
 
-.content {
-  margin-bottom: 2rem;
+*,
+*::after,
+*::before {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
