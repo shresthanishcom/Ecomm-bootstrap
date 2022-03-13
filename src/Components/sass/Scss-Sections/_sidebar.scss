@@ -10,6 +10,8 @@ $white: #fff;
   align-items: center;
   list-style: none;
   height: 2.2em;
+  width: 90%;
+  margin: auto;
   img {
     margin: 0 1em;
   }
@@ -35,14 +37,14 @@ $white: #fff;
     content: " ";
     width: 80%;
 
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid rgba(123, 123, 126, 0.5);
     bottom: 0;
-    left: 1.5em;
+    left: 1.2em;
     @media screen and (max-width: 280px) {
     }
     @media screen and (max-width: 540px) {
       bottom: 0px;
-      width: 60%;
+      width: 100%;
     }
     @media screen and (max-width: 768px) {
       bottom: 0px;
@@ -51,6 +53,9 @@ $white: #fff;
 
   &:hover {
     background-color: antiquewhite;
+    border-radius: 1rem;
+    width: 90%;
+    margin: auto;
     cursor: pointer;
   }
 }

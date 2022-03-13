@@ -1,21 +1,59 @@
+.carousel-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: orange;
+
+  .left,
+  .right {
+    padding: 1rem;
+    background-color: grey;
+    opacity: 0.5;
+    top: 50%;
+    position: absolute;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  .right {
+    right: 0px;
+  }
+}
+
 .manual-carousel-item {
+  height: 100%;
+  width: 100%;
   display: none;
 }
 
 .active {
-  display: block;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  img {
+    width: 10rem;
+  }
 }
 
 .carousel-button {
-  height: 1rem;
-  width: 1rem;
-}
-.carousel-button {
+  position: absolute;
+  z-index: 2;
+  bottom: 0px;
   ol {
+    height: 3rem;
+    width: 100%;
+    margin: 0px;
+    .active {
+      background-color: teal;
+    }
     li {
-      display: inline;
-      margin: 0 1rem;
-      border: 0.5rem solid red;
+      height: 0.5rem;
+      width: 3rem;
+      margin: 0 0.1rem;
+      display: inline-block;
+      background-color: rgb(143, 25, 190);
     }
   }
 }

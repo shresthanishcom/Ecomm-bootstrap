@@ -13,23 +13,55 @@ function Carousel() {
     for (let i = 0; i < allItems.length; i++) {
       let newList = document.createElement("li");
       newList.id = i;
+      newList.classList.add("carousel-btn");
+      if (i === 0) {
+        newList.classList.add("active");
+      }
+
       newList.addEventListener("click", handleCarouselBtnClick);
       newList.appendChild(document.createTextNode(""));
       automaticButton.appendChild(newList);
     }
+
+    //putting those buttons to center
+
+    const btnGroup = document.getElementsByClassName("carousel-button")[0];
+    const carouselContainer =
+      document.getElementsByClassName("carousel-container")[0];
+
+    let totalBtnWidth = window.getComputedStyle(btnGroup).width;
+
+    let totalContainerWidth = window.getComputedStyle(carouselContainer).width;
+    totalBtnWidth = totalBtnWidth.slice(0, -2);
+    totalContainerWidth = totalContainerWidth.slice(0, -2);
+    console.log("total button width:", totalBtnWidth);
+    console.log("container width:", totalContainerWidth);
+    btnGroup.style = `left:${
+      parseInt(totalContainerWidth) / 2 - parseInt(totalBtnWidth) / 2
+    }px`;
+
+    console.log(
+      "to put",
+      parseInt(totalContainerWidth) / 2 - parseInt(totalBtnWidth) / 2
+    );
   }, []);
 
   const getItems = () => {
     return document.querySelectorAll(".manual-carousel-item");
   };
+  const getButtons = () => {
+    return document.querySelectorAll(".carousel-btn");
+  };
 
   //for changing the carousel image
   const changeCarouselImage = (id) => {
     const allItems = getItems();
+    const allButtons = getButtons();
     for (let i = 0; i < allItems.length; i++) {
       allItems[i].classList.remove("active");
+      allButtons[i].classList.remove("active");
     }
-
+    allButtons[id].classList.add("active");
     allItems[id].classList.add("active");
   };
 
@@ -79,7 +111,7 @@ function Carousel() {
         <img src="./images/laptop.png" alt="first slide" />
       </div>
       <div className="carousel-button">
-        <ol id="automatic-button"></ol>
+        <ol id="automatic-button">{/* list will be added with js */}</ol>
       </div>
     </div>
   );

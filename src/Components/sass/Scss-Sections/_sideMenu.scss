@@ -1,0 +1,23 @@
+#side-menu {
+  display: none;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  width: 60%;
+  background-color: black;
+  color: white;
+  font-size: 1.2rem;
+  line-height: 3rem;
+  ul {
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    li {
+      list-style: none;
+
+      &:hover {
+        color: red;
+      }
+    }
+  }
+}
