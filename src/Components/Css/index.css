@@ -61,19 +61,32 @@
 }
 
 .card img {
-  height: 100%;
-  width: 100%;
+  width: 90%;
+  height: 13rem;
   -o-object-fit: contain;
      object-fit: contain;
-  -o-object-position: center;
-     object-position: center;
+  margin: auto;
 }
 
-.product-image img {
-  -o-object-fit: contain;
-     object-fit: contain;
-  height: 7rem;
-  width: 100%;
+.card-body .card-title {
+  height: 4rem;
+  background: linear-gradient(to bottom, #010101 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.card-body .card-price,
+.card-body h5 {
+  height: 2rem;
+  font-size: 1.4rem;
+}
+.card-body .card-rating {
+  height: 2rem;
+  font-size: 1.2rem;
+}
+.card-body button {
+  position: absolute;
+  bottom: 0px;
 }
 
 .lds-circle {

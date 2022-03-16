@@ -36,7 +36,7 @@ function AllProducts() {
       )}
       {!loading && (
         <div className="container">
-          <div className="row w-100 ">{showProducts()}</div>
+          <div className="row product-container "> {showProducts()}</div>
         </div>
       )}
     </>
