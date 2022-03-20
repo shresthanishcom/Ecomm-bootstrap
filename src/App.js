@@ -1,14 +1,15 @@
-import "./App.css";
-import Home from "./Components/Home";
-import "./Components/Css/index.css";
-import Navbar from "./Components/Navbar";
 import { Route, Routes } from "react-router-dom";
+
+import Home from "./Components/Home";
 import AddNewProduct from "./Components/AddNewProduct";
 import ProductDetail from "./Components/ProductDetail";
 import Cart from "./Components/Cart";
 import SearchPage from "./Components/SearchPage";
 import Login from "./Components/Authentication/Login";
 import Navbarr from "./Components/Navbarr";
+
+import "./App.css";
+import "./Components/Css/index.css";
 
 function App() {
   return (

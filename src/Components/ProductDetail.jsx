@@ -7,8 +7,6 @@ import {
   addToVisitedItems,
 } from "../redux/reducers/cartSlice";
 
-import "./Css/product.css";
-
 function ProductDetail() {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.cartReducer.cartItems);

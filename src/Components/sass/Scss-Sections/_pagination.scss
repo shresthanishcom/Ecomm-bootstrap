@@ -1,0 +1,9 @@
+.paginate-container {
+  li {
+    padding: 1em;
+    list-style: none;
+  }
+}
+.activePageNumber {
+  background-color: rgba(purple, 0.5);
+}
