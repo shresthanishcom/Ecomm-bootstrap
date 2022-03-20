@@ -32,7 +32,7 @@ export default function Paginate(props) {
     );
   };
   const displayNextButton = () => {
-    return parseInt(currentPageNumber) >=
+    return parseInt(currentPageNumber) ===
       Math.ceil(totalItemsLength / itemsPerPage) ? (
       <button disabled id="next" className="btn btn-warning">
         Next
@@ -48,7 +48,6 @@ export default function Paginate(props) {
       <ul onClick={handleClick} className="d-flex ">
         {displayPreviousButton()}
         {displayPages()}
-
         {displayNextButton()}
       </ul>
     </div>

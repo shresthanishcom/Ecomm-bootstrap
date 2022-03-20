@@ -8,19 +8,19 @@ import Paginate from "../Paginate";
 function AllProducts() {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
-  const [state, setState] = useState({ currentPageNumber: 0, currentPage: [] });
+  const [state, setState] = useState({ currentPageNumber: 1, currentPage: [] });
 
   const itemsPerPage = 4;
 
-  const paginate = (pageNumber = 1) => {
-    const currentPage = pageNumber * itemsPerPage;
-    const nextPage = pageNumber * itemsPerPage + itemsPerPage;
+  const paginate = (pageNumber) => {
+    const currentPage = (pageNumber - 1) * itemsPerPage;
+    const nextPage = (pageNumber - 1) * itemsPerPage + itemsPerPage;
     const slicedProduct = products.slice(currentPage, nextPage);
     return slicedProduct;
   };
 
   useEffect(() => {
-    const currentPage = paginate(0);
+    const currentPage = paginate(state.currentPageNumber);
     setState({
       ...state,
       currentPage,
