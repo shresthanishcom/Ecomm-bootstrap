@@ -16,6 +16,8 @@ function Login() {
         });
         break;
       }
+      default: {
+      }
     }
   };
   const handleSubmit = (e) => {

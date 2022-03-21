@@ -2,7 +2,6 @@ import React from "react";
 import Sidebar from "./Home/Sidebar";
 import AllProducts from "./Home/AllProducts";
 import Carousel from "./Home/Carousel";
-import SpecificProduct from "./Home/SpecificProduct";
 
 export default function Home(props) {
   return (

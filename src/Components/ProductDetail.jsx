@@ -7,6 +7,8 @@ import {
   addToVisitedItems,
 } from "../redux/reducers/cartSlice";
 
+import Helmet from "react-helmet";
+
 function ProductDetail() {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.cartReducer.cartItems);
@@ -22,7 +24,7 @@ function ProductDetail() {
   useEffect(() => {
     let alreadyExists = false;
 
-    visitedProducts.map((item) => {
+    visitedProducts.forEach((item) => {
       if (item.id === parseInt(id)) {
         setProduct(item);
         setState({ ...state, costPrice: item.price });
@@ -67,6 +69,9 @@ function ProductDetail() {
 
   return (
     <div>
+      <Helmet>
+        <title>{product.title}</title>
+      </Helmet>
       {loading && (
         <div className="lds-circle">
           <div></div>

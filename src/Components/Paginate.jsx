@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Paginate(props) {
   const { totalItemsLength, itemsPerPage, handleClick, currentPageNumber } =
     props;
-  const [state, setState] = useState({});
   const totalPages = Math.ceil(totalItemsLength / itemsPerPage);
   const displayPages = () => {
     let pagesList = [];
@@ -33,7 +32,7 @@ export default function Paginate(props) {
   };
   const displayNextButton = () => {
     return parseInt(currentPageNumber) ===
-      Math.ceil(totalItemsLength / itemsPerPage) ? (
+      Math.ceil(totalItemsLength / itemsPerPage) || totalItemsLength === 0 ? (
       <button disabled id="next" className="btn btn-warning">
         Next
       </button>

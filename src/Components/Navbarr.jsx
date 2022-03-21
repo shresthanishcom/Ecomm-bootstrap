@@ -6,15 +6,13 @@ import Search from "./Search";
 function Navbarr() {
   const cartItems = useSelector((state) => state.cartReducer.cartItems);
   const [totalPrice, setTotalPrice] = useState(0);
-  const calculateTotalPrice = () => {
+
+  useEffect(() => {
     let price = 0;
-    cartItems.map((item) => {
+    cartItems.forEach((item) => {
       price += item.price * item.quantity;
     });
     setTotalPrice(price);
-  };
-  useEffect(() => {
-    calculateTotalPrice();
   }, [cartItems]);
 
   const handleMenuClick = (e) => {

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../redux/reducers/cartSlice";
 import Paginate from "../Paginate";
+import Helmet from "react-helmet";
 
 function AllProducts() {
-  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [state, setState] = useState({ currentPageNumber: 1, currentPage: [] });
 
@@ -68,6 +66,9 @@ function AllProducts() {
   };
   return (
     <>
+      <Helmet>
+        <title>All products</title>
+      </Helmet>
       <h1>All products:</h1>
       {loading && (
         <div className="lds-circle">

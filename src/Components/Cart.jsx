@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { editCartItems } from "../redux/reducers/cartSlice";
 import { useNavigate } from "react-router-dom";
 
+import { Helmet } from "react-helmet";
+
 function Cart() {
   const navigate = useNavigate();
 
@@ -12,16 +14,13 @@ function Cart() {
   const [state, setState] = useState({ quantity: 1 });
   const dispatch = useDispatch();
 
-  const calculateTotalPrice = () => {
+  useEffect(() => {
     let price = 0;
-    carts.map((item) => {
+    carts.forEach((item) => {
       price += item.price * item.quantity;
     });
 
     setTotalPrice(price);
-  };
-  useEffect(() => {
-    calculateTotalPrice();
   }, [carts]);
 
   const handleClick = (e, id) => {
@@ -44,6 +43,9 @@ function Cart() {
     return carts.map((product) => {
       return (
         <>
+          <Helmet>
+            <title>{`${carts.length} cart products`} </title>
+          </Helmet>
           <div className="row" onClick={(e) => handleClick(e, product.id)}>
             <div className="col-3 product-image">
               <img src={product.image} alt={`${product.title} `} />
