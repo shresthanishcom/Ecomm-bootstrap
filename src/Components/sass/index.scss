@@ -6,11 +6,15 @@
 @use "./Scss-Sections/newNavbar";
 @use "./Scss-Sections/sideMenu";
 @use "./Scss-Sections/pagination";
-
+@use "./Scss-Sections/product";
 *,
 *::after,
 *::before {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.8rem;
 }

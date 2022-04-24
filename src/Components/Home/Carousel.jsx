@@ -7,8 +7,25 @@ function Carousel() {
     //the more manaual crousel item added it automatically generate buttons
     //this run after dom is rendered useffect runs after dom
 
+    //for changing the carousel image
+    const changeCarouselImage = (id) => {
+      const allItems = getItems();
+      const allButtons = getButtons();
+      for (let i = 0; i < allItems.length; i++) {
+        allItems[i].classList.remove("active");
+        allButtons[i].classList.remove("active");
+      }
+      allButtons[id].classList.add("active");
+      allItems[id].classList.add("active");
+    };
+    const handleCarouselBtnClick = (e) => {
+      changeCarouselImage(e.target.id);
+      setState((state) => ({ ...state, currentSlide: e.target.id }));
+    };
+
     const allItems = document.querySelectorAll(".manual-carousel-item");
-    setState({ ...state, allItems: allItems });
+    // setState({ ...state, allItems: allItems });
+    setState((state) => ({ ...state, allItems }));
     const automaticButton = document.getElementById("automatic-button");
     for (let i = 0; i < allItems.length; i++) {
       let newList = document.createElement("li");
@@ -34,16 +51,10 @@ function Carousel() {
     let totalContainerWidth = window.getComputedStyle(carouselContainer).width;
     totalBtnWidth = totalBtnWidth.slice(0, -2);
     totalContainerWidth = totalContainerWidth.slice(0, -2);
-    console.log("total button width:", totalBtnWidth);
-    console.log("container width:", totalContainerWidth);
+
     btnGroup.style = `left:${
       parseInt(totalContainerWidth) / 2 - parseInt(totalBtnWidth) / 2
     }px`;
-
-    console.log(
-      "to put",
-      parseInt(totalContainerWidth) / 2 - parseInt(totalBtnWidth) / 2
-    );
   }, []);
 
   const getItems = () => {
@@ -66,10 +77,6 @@ function Carousel() {
   };
 
   //
-  const handleCarouselBtnClick = (e) => {
-    changeCarouselImage(e.target.id);
-    setState({ ...state, currentSlide: e.target.id });
-  };
 
   const handleSwipeClick = (e) => {
     let currentSlide = state.currentSlide;

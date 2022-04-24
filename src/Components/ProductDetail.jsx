@@ -7,13 +7,11 @@ import {
   addToVisitedItems,
 } from "../redux/reducers/cartSlice";
 
-import Helmet from "react-helmet";
-
 function ProductDetail() {
   const dispatch = useDispatch();
   const carts = useSelector((state) => state.cartReducer.cartItems);
 
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({ quantity: 1, price: 0 });
   const [loading, setLoading] = useState(true);
   const [state, setState] = useState({ quantity: 1, costPrice: product.price });
 
@@ -40,7 +38,6 @@ function ProductDetail() {
           console.log("error while fetching data", err);
           return {};
         });
-
       setProduct(data);
       dispatch(addToVisitedItems(data));
       setState({ ...state, costPrice: data.price });
@@ -49,7 +46,7 @@ function ProductDetail() {
     if (!alreadyExists) {
       getProduct();
     }
-  }, []);
+  }, [id, dispatch, visitedProducts, state]);
 
   const checkInCart = () => {
     let found = false;
@@ -68,82 +65,88 @@ function ProductDetail() {
   };
 
   return (
-    <div>
-      <Helmet>
-        <title>{product.title}</title>
-      </Helmet>
+    <>
       {loading && (
         <div className="lds-circle">
           <div></div>
         </div>
       )}
       {!loading && (
-        <div className="product-detail">
-          <div className="container">
-            <div className="product-img">
-              <img
-                src={`${product.image}`}
-                alt={product.title}
-                className="mx-auto d-block"
-              />
-            </div>
-            <div className="product-detail">
-              <div className=" display-2 ">{product.title}</div>
-              <div title="Price in Nepal" className="h2 display-5">
-                Rs.{product.price}
+        <div className="container-fluid m-2">
+          <div className="row">
+            <div className="col-12 col-sm-5 p-5 product-images">
+              <div className="row w-100">
+                <img
+                  src={`${product.image}`}
+                  alt={product.title}
+                  className="mx-auto d-block"
+                />
               </div>
-              <span>{product.category}</span>
-              <div>{product.rating?.rate && product.rating.rate} star</div>
+              <div className="row w-100"></div>
             </div>
-            {!checkInCart() ? (
-              <>
-                <div>
-                  Quantity:
-                  <select value={state.quantity} onChange={handleQuantity}>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </div>
-                <div className="lead border border-2">
-                  {product.description}
-                </div>
-                <button
-                  className="btn btn-primary m-3"
-                  onClick={() =>
-                    dispatch(
-                      addToCart({
-                        ...product,
-                        quantity: state.quantity,
-                      })
-                    )
-                  }
-                >
-                  Add to cart
-                </button>
-                <span style={{ color: "orange", fontSize: "1.4rem" }}></span>
-                {` Rs.${state.costPrice}`}
-              </>
-            ) : (
-              <>
-                <div className="lead border border-2">
-                  {product.description}
-                </div>
+            <div className="col-12 col-sm-7 product-details">
+              <h1 className="product-title ">{product.title}</h1>
+              <div className="product-rating">
+                {product.rating?.rate && product.rating.rate} star
+              </div>
+              <div className=" d-flex align-items-center  price-detail">
+                <del className="">Rs 100</del>
+                <h3 className=" m-0 product-price" title="Price in Nepal">
+                  Rs.{product?.price && product.price}
+                </h3>
+                <div className=" discount-tag">70%Off</div>
+              </div>
+              {!checkInCart() ? (
+                <>
+                  <div className="m-3 product-quantity">
+                    Quantity:
+                    <select value={state.quantity} onChange={handleQuantity}>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                  <div className="lead border border-2  p-3 product-description">
+                    {product.description}
+                  </div>
+                  <button
+                    className="btn btn-primary m-3"
+                    onClick={() =>
+                      dispatch(
+                        addToCart({
+                          ...product,
+                          quantity: state.quantity,
+                        })
+                      )
+                    }
+                  >
+                    Add to cart
+                  </button>
+                  <span
+                    style={{ color: "orange", fontSize: "1.4rem" }}
+                  >{` Rs.${state.costPrice}`}</span>
+                </>
+              ) : (
+                <>
+                  <div className="lead border border-2 p-3 product-description">
+                    {product.description}
+                  </div>
 
-                <button
-                  className="btn btn-danger m-3"
-                  onClick={() => dispatch(removeFromCart(product.id))}
-                >
-                  Remove from cart
-                </button>
-              </>
-            )}
+                  <button
+                    className="btn btn-danger m-3"
+                    onClick={() => dispatch(removeFromCart(product.id))}
+                  >
+                    Remove from cart
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

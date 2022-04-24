@@ -70,7 +70,7 @@
 
 .card-body .card-title {
   height: 4rem;
-  background: linear-gradient(to bottom, #010101 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to bottom, rgb(1, 1, 1) 0%, rgba(0, 0, 0, 0) 100%);
   -webkit-background-clip: text;
           background-clip: text;
   color: transparent;
@@ -208,10 +208,82 @@
   background-color: rgba(128, 0, 128, 0.5);
 }
 
+.product-images img {
+  height: 100%;
+  width: 100%;
+}
+
+.product-details {
+  border: 2px solid grey;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 35rem;
+  padding: 2em;
+}
+.product-details .product-title {
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.5rem);
+  font-weight: 900;
+}
+.product-details .product-rating {
+  padding: 1em 0;
+  color: rgb(119, 187, 18);
+}
+.product-details .price-detail {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+}
+.product-details .price-detail del {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
+  min-width: min-content;
+  text-align: center;
+  padding: 0 1rem;
+  font-size: clamp(0.8rem, 1vw + 0.5rem, 1.4rem);
+  white-space: nowrap;
+}
+.product-details .price-detail .product-price {
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
+  min-width: min-content;
+  padding: 0 1rem;
+  text-align: start;
+  color: rgb(177, 18, 18);
+  font-size: clamp(1.3rem, 2vw + 1rem, 3rem);
+}
+.product-details .price-detail .discount-tag {
+  width: 100%;
+  max-width: 7.5rem;
+  min-width: -webkit-min-content;
+  min-width: -moz-min-content;
+  min-width: min-content;
+  color: white;
+  padding: 0.3em 0;
+  font-weight: 900;
+  text-align: center;
+  background-color: red;
+  border-radius: 25px;
+}
+.product-details .product-description {
+  width: 100%;
+  font-size: clamp(1.2rem, 0.5vw + 1rem, 1.7rem);
+}
+.product-details .product-quantity {
+  font-size: 1.4rem;
+}
+
 *,
 *::after,
 *::before {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.8rem;
 }/*# sourceMappingURL=index.css.map */
