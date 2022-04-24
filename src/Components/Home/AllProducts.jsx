@@ -16,14 +16,19 @@ function AllProducts() {
     const slicedProduct = products.slice(currentPage, nextPage);
     return slicedProduct;
   };
-
   useEffect(() => {
+    const paginate = (pageNumber) => {
+      const currentPage = (pageNumber - 1) * itemsPerPage;
+      const nextPage = (pageNumber - 1) * itemsPerPage + itemsPerPage;
+      const slicedProduct = products.slice(currentPage, nextPage);
+      return slicedProduct;
+    };
     const currentPage = paginate(state.currentPageNumber);
     setState({
       ...state,
       currentPage,
     });
-  }, [products]);
+  }, [products, state]);
 
   const [loading, setLoading] = useState("true");
   useEffect(() => {
