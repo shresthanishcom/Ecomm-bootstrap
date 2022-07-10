@@ -276,6 +276,11 @@
   font-size: 1.4rem;
 }
 
+.cart-product-image img {
+  height: 100%;
+  width: 100%;
+}
+
 *,
 *::after,
 *::before {

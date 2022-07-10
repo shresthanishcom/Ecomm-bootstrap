@@ -47,18 +47,14 @@ function Cart() {
             <title>{`${carts.length} cart products`} </title>
           </Helmet>
           <div className="row" onClick={(e) => handleClick(e, product.id)}>
-            <div className="col-3 product-image">
+            <div className="col-3 cart-product-image">
               <img src={product.image} alt={`${product.title} `} />
             </div>
             <div className="col-9 product-title ">
               <div className="display-5">{product.title}</div>
               <div>
                 Quantity:
-                <select
-                  name="quantity"
-                  value={product.quantity}
-                  onChange={(e) => handleQuantity(e, product.id)}
-                >
+                <select name="quantity" value={product.quantity} onChange={(e) => handleQuantity(e, product.id)}>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -66,9 +62,7 @@ function Cart() {
                   <option>5</option>
                 </select>
               </div>
-              <div className="display-5 product-price">
-                {product.price * product.quantity}
-              </div>
+              <div className="display-5 product-price">{product.price * product.quantity}</div>
             </div>
           </div>
         </>
