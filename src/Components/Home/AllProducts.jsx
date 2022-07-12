@@ -6,7 +6,8 @@ import Helmet from "react-helmet";
 
 function AllProducts() {
   const [products, setProducts] = useState([]);
-  const [state, setState] = useState({ currentPageNumber: 1, currentPage: [] });
+  const [state, setState] = useState({ currentPage: [] });
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
 
   const itemsPerPage = 4;
 
@@ -23,12 +24,12 @@ function AllProducts() {
       const slicedProduct = products.slice(currentPage, nextPage);
       return slicedProduct;
     };
-    const currentPage = paginate(state.currentPageNumber);
-    setState({
+    const currentPage = paginate(currentPageNumber);
+    setState((state) => ({
       ...state,
       currentPage,
-    });
-  }, [products, state]);
+    }));
+  }, [products, currentPageNumber]);
 
   const [loading, setLoading] = useState("true");
   useEffect(() => {
@@ -53,20 +54,22 @@ function AllProducts() {
     const id = e.target.id;
 
     if (id === "previous") {
-      const previousPageNumber = state.currentPageNumber - 1;
+      const previousPageNumber = currentPageNumber - 1;
       const currentPage = paginate(previousPageNumber);
+      setCurrentPageNumber(previousPageNumber);
       setState({
         ...state,
         currentPage,
-        currentPageNumber: previousPageNumber,
       });
     } else if (id === "next") {
-      const nextPageNumber = state.currentPageNumber + 1;
+      const nextPageNumber = currentPageNumber + 1;
       const currentPage = paginate(nextPageNumber);
-      setState({ ...state, currentPage, currentPageNumber: nextPageNumber });
+      setCurrentPageNumber(nextPageNumber);
+      setState({ ...state, currentPage: currentPage });
     } else {
       const currentPage = paginate(e.target.id);
-      setState({ ...state, currentPage, currentPageNumber: e.target.id });
+      setCurrentPageNumber(e.target.id);
+      setState({ ...state, currentPage });
     }
   };
   return (
@@ -85,12 +88,7 @@ function AllProducts() {
           <div className="row product-container "> {showProducts()}</div>
         </div>
       )}
-      <Paginate
-        totalItemsLength={products.length}
-        itemsPerPage={itemsPerPage}
-        handleClick={handleClick}
-        currentPageNumber={state.currentPageNumber}
-      />
+      <Paginate totalItemsLength={products.length} itemsPerPage={itemsPerPage} handleClick={handleClick} currentPageNumber={currentPageNumber} />
     </>
   );
 }

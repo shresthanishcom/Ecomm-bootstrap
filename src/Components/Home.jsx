@@ -18,12 +18,8 @@ export default function Home(props) {
             <div className="content">
               <AllProducts />
             </div>
-            <div className="content">
-              {/* <SpecificProduct title="New Products" /> */}
-            </div>
-            <div className="content">
-              {/* <SpecificProduct title="Hot deals" /> */}
-            </div>
+            <div className="content">{/* <SpecificProduct title="New Products" /> */}</div>
+            <div className="content">{/* <SpecificProduct title="Hot deals" /> */}</div>
           </div>
         </div>
       </div>
